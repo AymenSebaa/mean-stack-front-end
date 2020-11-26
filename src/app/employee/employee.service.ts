@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Employee } from './employee.model';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Employee } from './employee.model';
 
 })
 export class EmployeeService {
-  readonly baseURL = 'http://localhost:8080/employees';
+  readonly baseURL = '/employee';
 
   
   selectedEmployee: Employee = this.resetSelectedEmployee();
@@ -21,19 +22,19 @@ export class EmployeeService {
   }
 
   postEmplyoee(employee: Employee){
-    return this.http.post(this.baseURL, employee);
+    return this.http.post(environment.apiBaseUrl+this.baseURL, employee);
   }
 
   getEmployees(){
-    return this.http.get(this.baseURL);
+    return this.http.get(environment.apiBaseUrl+this.baseURL);
   }
 
   updateEmployee(employee: Employee){
-    return this.http.put(this.baseURL+'/'+employee._id, employee);
+    return this.http.put(environment.apiBaseUrl+this.baseURL+'/'+employee._id, employee);
   }
 
   deleteEmployee(employee: Employee){
-    return this.http.delete(this.baseURL+'/'+employee._id);
+    return this.http.delete(environment.apiBaseUrl+this.baseURL+'/'+employee._id);
   }
 
   refreshEmployees(employees?: Employee[]){

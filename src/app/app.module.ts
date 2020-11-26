@@ -11,30 +11,37 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './modal/modal.component';
+import { UserComponent } from './user/user.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    ModalComponent
+    ModalComponent,
+    UserComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    FlexLayoutModule,
-    AppRoutingModule,
-    MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,MatDialogModule, MatBadgeModule, MatIconModule, MatTableModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,MatDialogModule, MatBadgeModule, MatIconModule, MatTableModule,
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 

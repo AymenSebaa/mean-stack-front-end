@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/CrudDB', (err)=>{
+mongoose.connect(process.env.MONGODB_URI, (err)=>{
     if(err){
         console.log('MongoDB connection Faild', JSON.stringify(err, undefined, 2));
     } else {
@@ -8,4 +8,5 @@ mongoose.connect('mongodb://localhost:27017/CrudDB', (err)=>{
     }
 }); 
 
-module.exports = mongoose;
+require('./user');
+require('./employees');

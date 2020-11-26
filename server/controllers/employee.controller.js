@@ -1,15 +1,14 @@
-const express = require('express');
-var router = express.Router();
-var ObjectId = require('mongoose').Types.ObjectId;
 
-var {Employee} = require('../models/employees'); 
+const mongoose = require('mongoose');
+const Employee = mongoose.model('Employee');
+var ObjectId = mongoose.Types.ObjectId;
 
 function handleError(res, reason, message, code){
     console.log("ERROR: ", reason);
     res.status(code || 500).json({"error": message});
 }
 
-router.get('/', (req, res) => {
+module.exports.getAll = (req, res, next) => {
     Employee.find( (err, docs) => {
         if(err){
             handleError(res, err.message, 'Faild to get employees.');
@@ -17,8 +16,8 @@ router.get('/', (req, res) => {
             res.status(200).json(docs);
         }
     } );
-});
-router.post('/', (req, res) => {
+};
+module.exports.create = (req, res, next) => {
     delete req.body._id;
     var newEmployee = Employee(req.body);
     // newEmployee.createdAt = new Date();
@@ -29,9 +28,9 @@ router.post('/', (req, res) => {
             res.status(201).json(doc)
         }
     } );
-});
+};
 
-router.get('/:id', (req, res) => {
+module.exports.get = (req, res, next) => {
     if(!ObjectId.isValid(req.params.id)){
         handleError(res, err.message, 'Invalide ObjectID', 400);
     } else {
@@ -43,8 +42,8 @@ router.get('/:id', (req, res) => {
             }
         });
     }
-});
-router.put('/:id', (req, res) => {
+};
+module.exports.update = (req, res, next) => {
     if(!ObjectId.isValid(req.params.id)){
         handleError(res, 'Invalide ObjectID', 400);
     } else {
@@ -56,8 +55,8 @@ router.put('/:id', (req, res) => {
             }
         });
     } 
-});
-router.delete('/:id', (req, res) => {
+};
+module.exports.delete = (req, res, next) => {
     if(!ObjectId.isValid(req.params.id)){
         handleError(res, 'Invalide ObjectID', 400);
     } else {
@@ -69,6 +68,4 @@ router.delete('/:id', (req, res) => {
             }
         });
     }
-});
-
-module.exports = router;
+};

@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import {MediaObserver, MediaChange} from '@angular/flex-layout'
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
+
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { slideInOutAnimation } from './route-animations';
 
 @Component({
   selector: 'app-root',
