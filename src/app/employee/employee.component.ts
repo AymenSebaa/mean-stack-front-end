@@ -15,7 +15,7 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class EmployeeComponent implements OnInit, AfterViewInit {
 
-  constructor(public employeeService: EmployeeService,private _snackBar: MatSnackBar, private _dialog: MatDialog) { }
+  constructor(public employeeService: EmployeeService, private _snackBar: MatSnackBar, private _dialog: MatDialog) { }
 
   ngOnInit(): void { 
     
