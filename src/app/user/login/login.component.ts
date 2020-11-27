@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import { User } from '../user.model';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { slideDownAnimation } from 'src/app/route-animations';
+import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -15,13 +14,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   animations: [slideDownAnimation],
   host: { '[@slideDownAnimation]': '' }
 })
-export class SignUpComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
   constructor(public userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class SignUpComponent implements OnInit {
 
   hide = true;
   matcher = new MyErrorStateMatcher();
-  signUpForm = new FormGroup({
+  loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
       Validators.email,
@@ -42,20 +42,30 @@ export class SignUpComponent implements OnInit {
     ])
   });
   
-  emailServerError: boolean = false;
-  emailMessage: string = '';
+  serverError: any = { 
+    email: {inValid: false, message: ''}, 
+    password: {inValid: false, message: ''},
+    other: {inValid: false, message: ''} 
+  };
   onSubmit(form: FormGroupDirective){
-    this.userService.register(this.signUpForm.value).subscribe(
-      (res) => {
-      console.log(res as User);
-      this.openSnackBar("Registraton was successful", "OK");
-      form.resetForm();
-    }, (err) => {
-      this.emailServerError = true;
-      this.emailMessage = err.error.message;
-      this.signUpForm.controls['email'].setErrors({'invalid': true});
-      console.log('show email taken', this.signUpForm.controls['email']);
-    }
+    this.userService.authenticate(this.loginForm.value).subscribe(
+      (res: any) => {
+        this.userService.saveToken(res.token);
+        this.userService.isloggedIn();
+        this.openSnackBar("Login was successful", "OK");
+        this.router.navigate(['profile']);
+        form.resetForm();
+      }, 
+      (err) => {
+        let name: any = err.error.name;
+        if(!name){
+          this.openSnackBar("Faild to connect to server", "OK");
+          return;
+        }
+        this.serverError[name].inValid = true;
+        this.serverError[name].message = err.error.message;
+        this.loginForm.controls[name]?.setErrors({'invalid': true});
+      }
     );
   }
 
@@ -67,7 +77,8 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  redirectToLogin(){
-    this.router.navigate(['login']);
+  redirectToRegister(){
+    this.router.navigate(['signup']);
   }
+
 }

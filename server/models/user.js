@@ -39,6 +39,4 @@ userSchema.methods.generateJWT = function(){
     return jwt.sign({_id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXP});
 }
 
-var User = mongoose.model('User', userSchema);
-
-module.exports = {User};
+module.exports = mongoose.model('User', userSchema);;

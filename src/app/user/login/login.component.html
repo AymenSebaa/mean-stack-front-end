@@ -1,0 +1,35 @@
+<mat-card class="mat-elevation-z5" >
+    <div class="card-bg-1"></div>
+    <div class="card-bg-2"></div>
+    <div class="card-bg-3"></div>
+    <form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="loginForm.valid && onSubmit(form)" >
+    <mat-card-title> <h1 fxFlex fxLayoutAlign="center" >LOGIN</h1> </mat-card-title>
+    <mat-card-content fxLayout="column" >
+        <mat-form-field fxFlex="100" appearance="legacy" >
+            <mat-label> <mat-icon class="material-icons-outlined" >email_outline</mat-icon> EMAIL </mat-label>
+            <input matInput type="email" name="email" formControlName="email" [errorStateMatcher]="matcher"  placeholder="email@exanple.com" >
+            <mat-error *ngIf="serverError.email.inValid && !(loginForm.controls.email.hasError('email') || loginForm.controls.email.hasError('required')) " > {{serverError.email.message}} </mat-error>
+            <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')"> Please enter a valid email address </mat-error>
+            <mat-error *ngIf="loginForm.controls.email.hasError('required')"> email is <strong>required</strong> </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="100" appearance="legacy" >
+            <mat-label><mat-icon class="material-icons-outlined" >vpn_key</mat-icon> PASSWORD</mat-label>    
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password" [errorStateMatcher]="matcher" placeholder="Password" >
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon class="material-icons-outlined" >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="serverError.password.inValid && !(loginForm.controls.password.hasError('minlength') || loginForm.controls.password.hasError('required')) " > {{serverError.password.message}} </mat-error>
+            <mat-error *ngIf="loginForm.controls.password.hasError('minlength') && !loginForm.controls.password.hasError('required')"> Please enter at lest 4 characters </mat-error>
+            <mat-error *ngIf="loginForm.controls.password.hasError('required')"> password is <strong>required</strong> </mat-error>
+        </mat-form-field>  
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button mat-stroked-button type="reset"  >CLEAR</button>
+        <button mat-button mat-stroked-button type="submit"  fxFlex  >REGISTER</button>
+    </mat-card-actions>    
+    <mat-card-footer >
+        <div *ngIf="serverError.other.inValid"  > {{serverError.other.message}} </div>
+        <a mat-button fxFlex fxLayoutAlign="center" (click)=redirectToRegister() >Not a member? Register </a>
+    </mat-card-footer>
+    </form>
+</mat-card>

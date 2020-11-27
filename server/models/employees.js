@@ -7,6 +7,4 @@ var employeeChema = mongoose.Schema({
     salary: Number
 });
 
-var Employee = mongoose.model('Employee', employeeChema);
-
-module.exports = {Employee};
+module.exports = mongoose.model('Employee', employeeChema);

@@ -7,8 +7,8 @@ passport.use( new localStrategy( {usernameField: 'email'},
     (username, password, done) => {
         User.findOne({email: username}, (err, user) => {
             if(err) return done(err);
-            if(!user) return done(null, false, {message: 'Email is not registered'});
-            if(!user.verifyPassword(password)) return done(null, false, {message: 'Wrong password'});
+            if(!user) return done(null, false, {name: 'email', message: 'Email is not registered'});
+            if(!user.verifyPassword(password)) return done(null, false, {name: 'password', message: 'Wrong password'});
             return done(null, user);
         });
     } 

@@ -5,7 +5,42 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to top right,
-    #e84393, #ff7675);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
+.card-bg-wrapper{
+    position: absolute;
+    top: 0; left: 0%;
+    width: 100%; height: 100%;
+    background-image: linear-gradient(to top left,
+    #dfe6e9, white);
+}
+
+.card-bg-1{
+    position: absolute;
+    top: 0; left: -20%;
+    width: 200%; height: 30%;
+    border-radius:  0 0 50% 200%;
+    background-image: linear-gradient(to top right,
+    #e84393, #ff7675);
+    opacity: .8;
+}
+.card-bg-2{
+    position: absolute;
+    top: 0%; left: -20%;
+    width: 200%; height: 35%;
+    border-radius:  0 0 20% 200%;
+    background-image: linear-gradient(to top right,
+    #e84393, #ff7675);
+    opacity: .6;
+}
+.card-bg-3{
+    position: absolute;
+    top: 0%; left: -20%;
+    width: 200%; height: 40%;
+    border-radius:  0 0 0% 200%;
+    background-image: linear-gradient(to top right,
+    #e84393, #ff7675);
+    opacity: .4;
+}

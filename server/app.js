@@ -14,7 +14,7 @@ var app = express();
 
 // middleware
 app.use(bodyPrser.json());
-app.use(cors({origin: "http://192.168.1.12:4200"})); 
+app.use(cors()); 
 app.use(passport.initialize());
 app.use('/api', indexRouter);
 app.use((err, req, res, next) => {

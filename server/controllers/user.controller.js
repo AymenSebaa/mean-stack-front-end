@@ -29,7 +29,7 @@ module.exports.authenticate = (req, res, next) => {
 
 module.exports.profile = (req, res, next) => {
     User.findOne({_id: req._id}, (err, user) => {
-        if(!user) return res.status(404).json({status: false, message: 'User not found'});
-        return res.status(200).json({status: true, user: lodash.pick(user, ['email']) });
+        if(!user) return res.status(404).json({message: 'User not found'});
+        return res.status(200).json(lodash.pick(user, ['_id', 'email']) );
     });
 }
