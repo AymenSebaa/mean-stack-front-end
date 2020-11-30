@@ -41,6 +41,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       });
     } else {
       this.employeeService.updateEmployee(form.value).subscribe( (res) => {
+        console.log(res);
         let updatedEmployee = (res as Employee);
         const index = this.employeeService.employees.findIndex(employee => employee._id === updatedEmployee._id);
         this.employeeService.employees.splice(index, 1, updatedEmployee);

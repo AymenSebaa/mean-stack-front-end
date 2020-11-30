@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
   constructor(public userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if(this.userService.isloggedIn()) this.router.navigate(['profile']);
+    if(this.userService.isloggedIn()) this.router.navigate(['product']);
   }
 
   hide = true;

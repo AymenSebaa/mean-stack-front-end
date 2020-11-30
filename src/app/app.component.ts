@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { UserService } from './user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'mean-crud';
   mediaSub!: Subscription;
   constructor(
-    private mediaObserver: MediaObserver
+    private mediaObserver: MediaObserver,
+    public userService: UserService,
+    public router: Router 
   ){}
 
     ngOnInit(){
@@ -31,5 +35,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy(){
       this.mediaSub.unsubscribe();
+    }
+
+    
+    toAddProfuct(btnAddProduct: any){
+      this.router.navigate(['product']);
     }
 }

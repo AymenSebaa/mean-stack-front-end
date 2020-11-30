@@ -8,14 +8,10 @@ module.exports.register = (req, res, next) => {
     var user = new User(req.body);
     user.save((err, doc) => {
         if(err){
-            if(err.code == 11000){
-                res.status(422).json({message: "Email already taken"});
-            } else {
-                next(err);
-            }    
-        } else  {
-            res.status(201).json(doc);
-        }  
+            if(err.code == 11000) return res.status(422).json({message: "Email already taken"});
+            return next(err);
+        } 
+        return res.status(201).json(doc);
     }); 
 }
 
@@ -33,3 +29,4 @@ module.exports.profile = (req, res, next) => {
         return res.status(200).json(lodash.pick(user, ['_id', 'email']) );
     });
 }
+

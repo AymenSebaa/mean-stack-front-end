@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted ));
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
 
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(public userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if(this.userService.isloggedIn()) this.router.navigate(['profile']);
+    if (this.userService.isloggedIn()) this.router.navigate(['product']);
   }
 
   hide = true;
@@ -34,37 +34,37 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [
       Validators.required,
       Validators.email,
-    ]), 
+    ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
       //Validators.pattern('\^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/')
     ])
   });
-  
-  serverError: any = { 
-    email: {inValid: false, message: ''}, 
-    password: {inValid: false, message: ''},
-    other: {inValid: false, message: ''} 
+
+  serverError: any = {
+    email: { inValid: false, message: '' },
+    password: { inValid: false, message: '' },
+    other: { inValid: false, message: '' }
   };
-  onSubmit(form: FormGroupDirective){
+  onSubmit(form: FormGroupDirective) {
     this.userService.authenticate(this.loginForm.value).subscribe(
       (res: any) => {
         this.userService.saveToken(res.token);
         this.userService.isloggedIn();
         this.openSnackBar("Login was successful", "OK");
-        this.router.navigate(['profile']);
+        this.router.navigate(['products']);
         form.resetForm();
-      }, 
+      },
       (err) => {
         let name: any = err.error.name;
-        if(!name){
+        if (!name) {
           this.openSnackBar("Faild to connect to server", "OK");
           return;
         }
         this.serverError[name].inValid = true;
         this.serverError[name].message = err.error.message;
-        this.loginForm.controls[name]?.setErrors({'invalid': true});
+        this.loginForm.controls[name]?.setErrors({ 'invalid': true });
       }
     );
   }
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  redirectToRegister(){
+  redirectToRegister() {
     this.router.navigate(['signup']);
   }
 

@@ -7,7 +7,6 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-  readonly baseURL = '/user';  
   noAuthHeader = {headers: new HttpHeaders( { 'NoAuth': 'True'} ) };
 
   constructor(private http: HttpClient) { }
@@ -17,13 +16,13 @@ export class UserService {
   }
 
   register(user: User){
-    return this.http.post(environment.apiBaseUrl+this.baseURL+'/register', user, this.noAuthHeader);
+    return this.http.post(environment.userUrl+'/register', user, this.noAuthHeader);
   }
   authenticate(user: User){
-    return this.http.post(environment.apiBaseUrl+this.baseURL+'/authenticate', user, this.noAuthHeader);
+    return this.http.post(environment.userUrl+'/authenticate', user, this.noAuthHeader);
   }
   profile(){
-    return this.http.get(environment.apiBaseUrl+this.baseURL+'/profile'); 
+    return this.http.get(environment.userUrl+'/profile'); 
   }
 
   saveToken(token: string){

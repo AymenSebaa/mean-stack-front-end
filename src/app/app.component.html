@@ -1,9 +1,17 @@
 <!--  <app-employee></app-employee> -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
-<main >  
+
+<div class="cool">
   <div class="card-bg-wrapper"></div>
   <div class="card-bg-1"></div>
   <div class="card-bg-2"></div>
   <div class="card-bg-3"></div>
+</div>
+<main >  
   <router-outlet ></router-outlet>
 </main>
+
+<button *ngIf="userService.isloggedIn() && (this.router.url != '/product')" 
+id="add_product"  mat-fab aria-label="Add product" #btnAddProduct (click)="toAddProfuct(btnAddProduct)" >
+  <mat-icon>add</mat-icon>
+</button>

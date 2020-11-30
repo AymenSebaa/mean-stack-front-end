@@ -6,9 +6,14 @@ main{
     justify-content: center;
     align-items: center;
     overflow-y: auto;
-    overflow-x: hidden;
 }
-
+.cool{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
 .card-bg-wrapper{
     position: absolute;
     top: 0; left: 0%;
@@ -16,7 +21,6 @@ main{
     background-image: linear-gradient(to top left,
     #dfe6e9, white);
 }
-
 .card-bg-1{
     position: absolute;
     top: 0; left: -20%;
@@ -43,4 +47,10 @@ main{
     background-image: linear-gradient(to top right,
     #e84393, #ff7675);
     opacity: .4;
+}
+
+#add_product{
+    position: absolute;
+    bottom: 0; right: 0;
+    margin: 1rem;
 }

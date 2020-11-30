@@ -18,3 +18,4 @@ mongoose.connect(process.env.MONGODB_URI,
 
 require('./user');
 require('./employees');
+require('./product');

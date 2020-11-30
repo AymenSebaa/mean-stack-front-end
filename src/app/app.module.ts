@@ -10,6 +10,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select'
+import {MatChipsModule} from '@angular/material/chips';
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -23,6 +25,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductComponent } from './product/product/product.component';
+import { ImageDragComponent } from './partials/image-drag/image-drag.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,11 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ModalComponent,
     SignUpComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    ProductDetailsComponent,
+    ProductListComponent,
+    ProductComponent,
+    ImageDragComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +49,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,MatDialogModule, MatBadgeModule, MatIconModule, MatTableModule,
+    MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,MatDialogModule, MatBadgeModule, MatIconModule, MatTableModule,    MatSelectModule, MatChipsModule, 
     HttpClientModule,
     AppRoutingModule,
   ],

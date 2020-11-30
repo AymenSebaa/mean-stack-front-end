@@ -8,12 +8,10 @@ import { Employee } from './employee.model';
 
 })
 export class EmployeeService {
-  readonly baseURL = '/employee';
 
-  
+  employees: Employee[] = [];
   selectedEmployee: Employee = this.resetSelectedEmployee();
   displayedColumns: string[] = ['index', 'name', 'position', 'office', 'salary', 'option'];
-  employees: Employee[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -22,19 +20,19 @@ export class EmployeeService {
   }
 
   postEmplyoee(employee: Employee){
-    return this.http.post(environment.apiBaseUrl+this.baseURL, employee);
+    return this.http.post(environment.employeeUrl, employee);
   }
 
   getEmployees(){
-    return this.http.get(environment.apiBaseUrl+this.baseURL);
+    return this.http.get(environment.employeeUrl);
   }
 
   updateEmployee(employee: Employee){
-    return this.http.put(environment.apiBaseUrl+this.baseURL+'/'+employee._id, employee);
+    return this.http.put(environment.employeeUrl+'/'+employee._id, employee);
   }
 
   deleteEmployee(employee: Employee){
-    return this.http.delete(environment.apiBaseUrl+this.baseURL+'/'+employee._id);
+    return this.http.delete(environment.employeeUrl+'/'+employee._id);
   }
 
   refreshEmployees(employees?: Employee[]){

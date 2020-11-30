@@ -17,7 +17,8 @@ export class AuthInterceptor implements HttpInterceptor{
             event => {}, 
             err => {
                 if(!err.error.auth ){
-                    this.router.navigate(['login']);
+                    this.userService.deleteToken();
+                    this.router.navigate(['peoducts']);
                 }
             } 
         )); 
