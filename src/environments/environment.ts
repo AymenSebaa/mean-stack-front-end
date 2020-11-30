@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const BaseUrl = 'http://localhost:3000';
+const BaseUrl = 'https://gimpo-server.netlify.app';
 export const environment = {
   production: false,
   baseUrl: BaseUrl,

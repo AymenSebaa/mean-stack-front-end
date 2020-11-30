@@ -1,4 +1,4 @@
-const BaseUrl = 'http://localhost:3000';
+const BaseUrl = 'https://gimpo-server.netlify.app';
 export const environment = {
   production: true,
   baseUrl: BaseUrl,
