@@ -1,0 +1,9 @@
+button{
+    font-size: 1rem;
+    border-radius: 1rem;
+    background-color: #fffd;
+    transition-duration: .3s;
+}
+button:hover{
+    background-color: #fff;
+} 
