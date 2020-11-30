@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { slideDownAnimation } from 'src/app/route-animations';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(public userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    console.log(environment.baseUrl);
     if (this.userService.isloggedIn()) this.router.navigate(['product']);
   }
 

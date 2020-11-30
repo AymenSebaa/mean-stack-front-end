@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 
@@ -19,6 +20,7 @@ export class ProductListComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    console.log(environment.baseUrl);
     this.productService.getProducts().subscribe(
       (res) => {
         this.prorducts = res as Product[];
